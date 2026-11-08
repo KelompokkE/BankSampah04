@@ -10,7 +10,7 @@ class AdminSeeder extends Seeder
 {
     public function run(): void
     {
-        $password = env('cikokol04');
+        $password = env('ADMIN_PASSWORD');
 
         if (!$password) {
             throw new \RuntimeException(
