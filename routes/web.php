@@ -8,6 +8,7 @@ use App\Http\Controllers\JenisSampahController;
 use App\Http\Controllers\PenimbanganController;
 use App\Http\Controllers\NasabahController;
 use App\Http\Controllers\PengumpulanController;
+use App\Http\Controllers\LaporanKegiatanController;
 
 // Dashboard publik
 Route::get('/', [DashboardPublikController::class, 'index'])
@@ -86,5 +87,29 @@ Route::post('/admin/pengumpulan', [PengumpulanController::class, 'store'])
     // Riwayat pengumpulan per nasabah
 Route::get('/admin/nasabah/{nasabah}/riwayat', [PengumpulanController::class, 'riwayatNasabah'])
     ->name('admin.nasabah.riwayat');
+
+
+    // Pengelolaan laporan kegiatan
+    Route::get('/admin/laporan-kegiatan', [LaporanKegiatanController::class, 'index'])
+        ->name('admin.laporan-kegiatan.index');
+
+    Route::get('/admin/laporan-kegiatan/create', [LaporanKegiatanController::class, 'create'])
+        ->name('admin.laporan-kegiatan.create');
+
+    Route::post('/admin/laporan-kegiatan', [LaporanKegiatanController::class, 'store'])
+        ->name('admin.laporan-kegiatan.store');
+
+    Route::get('/admin/laporan-kegiatan/{id}', [LaporanKegiatanController::class, 'show'])
+        ->name('admin.laporan-kegiatan.show');
+
+    Route::get('/admin/laporan-kegiatan/{id}/edit', [LaporanKegiatanController::class, 'edit'])
+        ->name('admin.laporan-kegiatan.edit');
+
+    Route::put('/admin/laporan-kegiatan/{id}', [LaporanKegiatanController::class, 'update'])
+        ->name('admin.laporan-kegiatan.update');
+
+    Route::delete('/admin/laporan-kegiatan/{id}', [LaporanKegiatanController::class, 'destroy'])
+        ->name('admin.laporan-kegiatan.destroy');
+
 
 });
