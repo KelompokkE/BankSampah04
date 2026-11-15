@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardAdminController;
 use App\Http\Controllers\JenisSampahController;
 use App\Http\Controllers\PenimbanganController;
+use App\Http\Controllers\NasabahController;
+use App\Http\Controllers\PengumpulanController;
 
 // Dashboard publik
 Route::get('/', [DashboardPublikController::class, 'index'])
@@ -58,5 +60,31 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('/admin/penimbangan/{penimbangan}', [PenimbanganController::class, 'destroy'])
         ->name('admin.penimbangan.destroy');
+
+    // Pengelolaan data nasabah
+    Route::get('/admin/nasabah', [NasabahController::class, 'index'])
+        ->name('admin.nasabah.index');
+
+    Route::post('/admin/nasabah', [NasabahController::class, 'store'])
+        ->name('admin.nasabah.store');
+
+    // Mengubah data nasabah
+Route::put('/admin/nasabah/{nasabah}', [NasabahController::class, 'update'])
+    ->name('admin.nasabah.update');
+
+// Menghapus data nasabah
+Route::delete('/admin/nasabah/{nasabah}', [NasabahController::class, 'destroy'])
+    ->name('admin.nasabah.destroy');
+
+    // Pengelolaan riwayat pengumpulan sampah
+Route::get('/admin/pengumpulan', [PengumpulanController::class, 'index'])
+    ->name('admin.pengumpulan.index');
+
+Route::post('/admin/pengumpulan', [PengumpulanController::class, 'store'])
+    ->name('admin.pengumpulan.store');
+
+    // Riwayat pengumpulan per nasabah
+Route::get('/admin/nasabah/{nasabah}/riwayat', [PengumpulanController::class, 'riwayatNasabah'])
+    ->name('admin.nasabah.riwayat');
 
 });
